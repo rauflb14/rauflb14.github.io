@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en-US">
 
 <head>
@@ -9,16 +10,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
         integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/timezones.js"></script>
     <script src="js/main.js"></script>
 </head>
 
@@ -30,14 +35,30 @@
             </div>
 
             <div class="w-100"></div>
-            <div class="input-group">
-                <label class="input-group-text" for="dtp">Your time zone is: <label id="timezone"
-                        class="mx-1"></label></label>
-                <select class="form-select" id="dropdown-time-types">
-                </select>
-                <input type="text" class="form-control" id="dtp" />
-                <input class="form-control" type="input" id="timestamp" onClick="this.select();">
-                <label class="input-group-text" for="timestamp"> Select to copy </label>
+            <div class="col-12 col-md-4 p-2">
+                <div class="input-group">
+                    <label class="input-group-text" for="dropdown-timezone">Timezone: </label>
+                    <select class="form-select" id="dropdown-timezone"></select>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 p-2">
+                <div class="input-group">
+                    <label class="input-group-text" for="dropdown-time-types">Format: </label>
+                    <select class="form-select" id="dropdown-time-types"></select>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 p-2">
+                <div class="input-group">
+                    <label class="input-group-text" for="dtp">Date and Time: </label>
+                    <input type="text" class="form-control" id="dtp" />
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4 mx-auto p-2">
+                <div class="input-group">
+                    <label class="input-group-text" for="timestamp"> Select to copy </label>
+                    <input class="form-control" type="input" id="timestamp" onClick="this.select();">
+                </div>
             </div>
         </div>
     </div>

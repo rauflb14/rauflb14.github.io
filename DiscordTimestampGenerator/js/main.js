@@ -9,6 +9,7 @@ time_types = {
 }
 
 dtp = null;
+timestamp = null;
 
 $(document).ready(() => {
     function setTimestamp() {
@@ -17,12 +18,26 @@ $(document).ready(() => {
         timestamp = "<t:" + unix_time +
             ":" + time_type + ">";
         $("#timestamp").val(timestamp)
+        localStorage.setItem("time_type", time_type);
     }
 
-    timestamp;
+    $.each(moment.tz.names(), (i, timezone) => {
+        // const re = /Etc\/GMT((\+|-)[1-9]+)?$/;
+        // if (!re.test(timezone)) {
+        //     return;
+        // }
+
+        $("#dropdown-timezone").append($('<option value="' + timezone + '"' + (localStorage.getItem("timezone") === timezone ? "selected" : "") + '>' + timezone + '</option>'));
+    });
+
+    $("#dropdown-timezone").change(() => {
+        timezone = $("#dropdown-timezone").val();
+        dtp.data("DateTimePicker").options({ "timeZone": timezone });
+        localStorage.setItem("timezone", timezone);
+    });
 
     for (time_type in time_types) {
-        $("#dropdown-time-types").append($('<option value="' + time_type + '">' + time_types[time_type] + '</option>'));
+        $("#dropdown-time-types").append($('<option value="' + time_type + '"' + (localStorage.getItem("time_type") == time_type ? "selected" : "") + '>' + time_types[time_type] + '</option>'));
     }
 
     $("#dropdown-time-types").change(setTimestamp);
@@ -50,7 +65,6 @@ $(document).ready(() => {
     $("#timestamp").click(() => {
         navigator.clipboard.writeText(timestamp);
     });
-    $("#timezone").text(Intl.DateTimeFormat().resolvedOptions().timeZone);
     setTimestamp();
 }
 );
