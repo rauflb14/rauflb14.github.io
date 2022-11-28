@@ -4,11 +4,6 @@ $(document).ready(() => {
     $("#cycles").keyup(() => {
         let cycles = Number($("#cycles").val());
         for (key in formats) {
-            if (cycles * formats[key] < 1) {
-                $("#" + key).val(0);
-                continue;
-            }
-
             cycles *= formats[key];
             $("#" + key).val(Math.trunc(cycles));
             cycles -= Math.trunc(cycles);
